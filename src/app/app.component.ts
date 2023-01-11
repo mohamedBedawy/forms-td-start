@@ -7,10 +7,17 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+  submitted: boolean;
   ngOnInit(): void {}
   @ViewChild('f', { static: true }) signupForm: NgForm;
 
   genders = ['male', 'female'];
+  user={
+    username:'',
+    email:'',
+    secrectQuestion:'',
+    gender:''
+  }
 
   suggestUserName() {
     // const suggestedName = 'Superuser';
@@ -35,6 +42,12 @@ export class AppComponent implements OnInit {
   // }
 
   onSubmit() {
-    console.log('Submnitted', this.signupForm);
+    debugger
+    this.submitted= true;
+   this.user.username = this.signupForm.value.userName;
+   this.user.email = this.signupForm.value.email;
+   this.user.secrectQuestion = this.signupForm.value.QuestionAnswer;
+   this.user.gender = this.signupForm.value.gender;
+   this.signupForm.reset()
   }
 }
